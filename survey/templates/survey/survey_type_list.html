@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block content %}
+
+<hr />
+
+<button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+  <a href="{% url 'survey:survey-create' %}"> Add New Survey </a>
+</button>
+
+<button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+  <a href="{% url 'survey:question-create' %}"> Add New Question </a>
+</button>
+
+<button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+  <a href="{% url 'survey:patient-create' %}"> Add Patient </a>
+</button>
+
+<button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+  <a href="{% url 'survey:physician-response-create' %}"> Assign Survey to Patient </a>
+</button>
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Survey Types</h1>
+    <div class="flex flex-wrap -m-4">
+      {% for type in types %}
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-gray-100 p-8 rounded">
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="https://dummyimage.com/106x106" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium text-gray-900">{{type.name}}</span>
+              <span class="title-font font-small text-gray-500">{{type.description}}</span>
+              <div>
+                <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                  <a href="{% url 'survey:survey-question-list' type.pk %}"> View Questions </a>
+                </button>
+              </div>
+            </span>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

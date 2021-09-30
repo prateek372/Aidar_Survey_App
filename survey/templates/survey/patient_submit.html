@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+
+<hr />
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">Thank You</h1>
+    <h1 class="text-3xl font-medium title-font text-blue-900 mb-12 text-center"><a href="{% url 'survey:patient-list' %}"> Go Back </a></h1>
+  </div>
+</section>
+{% endblock content %}

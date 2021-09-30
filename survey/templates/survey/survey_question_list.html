@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block content %}
+
+<hr />
+
+<button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+  <a href="{% url 'survey:question-create' %}"> Add New Question </a>
+</button>
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">List of Questions</h1>
+    <div class="flex flex-wrap -m-4">
+      {% for question in questions%}
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-gray-100 p-8 rounded">
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="https://dummyimage.com/106x106" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+            <span class="flex-grow flex flex-col pl-4">
+              {% comment %} <span class="title-font font-medium text-gray-900">{{type.name}}</span> {% endcomment %}
+              <span class="title-font font-medium text-gray-900">{{question.description}}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+          <a href="{% url 'survey:question-update' question.pk %}"> Edit </a>
+        </button>
+
+        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+          <a href="{% url 'survey:question-delete' question.pk %}"> Delete </a>
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %} {% comment %} <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Questions List</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <div>
+      <div><a href="{% url 'survey:question-create' %}"> Add New Question </a></div>
+      <h1>List of Questions</h1>
+      <ul>
+        {% for question in questions%}
+        <div>
+          <li>{{question.description}} <a href="{% url 'survey:question-update' question.pk %}"> Edit </a> <a href="{% url 'survey:question-delete' question.pk %}"> Delete </a></li>
+        </div>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
+{% endcomment %}
